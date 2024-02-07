@@ -1,0 +1,5 @@
+Explicación del código
+MyApp: Es el widget principal que devuelve un MaterialApp con un Scaffold, proporcionando la estructura básica de la aplicación con una AppBar y un cuerpo que contiene el widget de demostración de la animación.
+AnimationDemo: Es un StatefulWidget porque su estado cambia (las propiedades del contenedor se animan) cuando el usuario interactúa con él.
+_AnimationDemoState: Mantiene el estado de las propiedades del AnimatedContainer que se animarán. La función _animateContainer genera valores aleatorios para el ancho, alto, color y radio del borde del contenedor, y luego llama a setState para desencadenar la reconstrucción del widget con las nuevas propiedades, creando la animación.
+AnimatedContainer: Automáticamente anima las transiciones entre sus propiedades antiguas y nuevas cuando cambian. Usa duration para definir cuánto tiempo toma la animación y curve para el tipo de animación.
