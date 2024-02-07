@@ -30,6 +30,8 @@ class _AnimationDemoState extends State<AnimationDemo> {
   double _height = 50.0;
   Color _color = Colors.blue;
   BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
+  // Agregar duration como variable de estado
+  Duration _duration = Duration(seconds: 1);
 
   void _animateContainer() {
     // Genera un estado aleatorio para la animación
@@ -43,6 +45,7 @@ class _AnimationDemoState extends State<AnimationDemo> {
       1,
     );
     _borderRadius = BorderRadius.circular(random.nextInt(100).toDouble());
+    _duration = Duration(seconds: random.nextInt(5) + 1);
 
     setState(() {});
   }
@@ -61,7 +64,7 @@ class _AnimationDemoState extends State<AnimationDemo> {
             borderRadius: _borderRadius,
           ),
           // Duración de la animación
-          duration: Duration(seconds: 1),
+          duration: _duration,
           // Opcional: elige un tipo de curva de animación
           curve: Curves.fastOutSlowIn,
         ),
