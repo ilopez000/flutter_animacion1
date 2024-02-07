@@ -29,7 +29,8 @@ class _AnimationDemoState extends State<AnimationDemo> {
   double _height = 50.0;
   Color _color = Colors.blue;
   BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
-  double _topPosition = 0.0; // Para controlar la posición vertical del contenedor.
+  double _topPosition = 0.0; // Controla la posición vertical del cuadrado.
+  double _leftPosition = 0.0; // Añadido para controlar la posición horizontal del cuadrado.
   Duration _duration = Duration(seconds: 1);
 
   @override
@@ -40,9 +41,9 @@ class _AnimationDemoState extends State<AnimationDemo> {
 
   void _updatePosition() {
     final random = Random();
-    // Asegúrate de llamar a setState en un lugar donde sea seguro (por ejemplo, como respuesta a una acción del usuario o después del primer frame).
     setState(() {
-      _topPosition = random.nextDouble() * (MediaQuery.of(context).size.height - _height - 50); // Asegura que el contenedor no se salga de la pantalla.
+      _topPosition = random.nextDouble() * (MediaQuery.of(context).size.height - _height - 50);
+      _leftPosition = random.nextDouble() * (MediaQuery.of(context).size.width - _width - 50); // Asegura que el cuadrado no se salga de la pantalla horizontalmente.
     });
   }
 
@@ -57,11 +58,9 @@ class _AnimationDemoState extends State<AnimationDemo> {
       1,
     );
     _borderRadius = BorderRadius.circular(random.nextInt(100).toDouble());
-    // Actualiza la duración de la animación.
     _duration = Duration(seconds: random.nextInt(5) + 1);
 
-    // Actualizar la posición dentro de la animación para evitar errores.
-    _updatePosition();
+    _updatePosition(); // Actualiza tanto la posición vertical como la horizontal.
   }
 
   @override
@@ -76,8 +75,8 @@ class _AnimationDemoState extends State<AnimationDemo> {
             color: _color,
             borderRadius: _borderRadius,
           ),
-          // Usa un margin para cambiar la posición vertical.
-          margin: EdgeInsets.only(top: _topPosition),
+          // Usa margin para cambiar tanto la posición vertical como la horizontal.
+          margin: EdgeInsets.only(top: _topPosition, left: _leftPosition),
           duration: _duration,
           curve: Curves.fastOutSlowIn,
         ),
